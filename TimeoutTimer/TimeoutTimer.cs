@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 
 namespace susi.util.toolkit
 {
@@ -17,10 +18,20 @@ namespace susi.util.toolkit
         public TimeSpan Timeout { get; }
         public DateTimeOffset CreatTime { get; }
 
-        public void ThrowIfTimeout()
+        public bool IsTimeout => DateTimeOffset.UtcNow > CreatTime + Timeout;
+
+        public void ThrowIfTimeout(
+            [CallerMemberName] string memberName = "",
+            [CallerFilePath] string sourceFilePath = "",
+            [CallerLineNumber] int sourceLineNumber = 0
+        )
         {
-            if (DateTimeOffset.UtcNow > CreatTime + Timeout)
-                throw new TimeoutException($"time out in {Timeout.TotalSeconds}s");
+            ThrowIfTimeout(new TimeoutException($"time out in {Timeout.TotalSeconds}s ({memberName} at {sourceFilePath}:{sourceLineNumber})"));
+        }
+
+        public void ThrowIfTimeout(TimeoutException ex)
+        {
+            if (IsTimeout) throw ex;
         }
     }
 }
