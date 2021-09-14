@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 
-namespace susi.util.toolkit
+namespace com.susi.util.toolkit
 {
     public readonly struct TimeoutTimer
     {
         public TimeoutTimer(TimeSpan timeout)
         {
-            CreatTime = DateTimeOffset.UtcNow;
+            CreationTime = DateTimeOffset.UtcNow;
             Timeout = timeout;
         }
 
@@ -16,9 +16,9 @@ namespace susi.util.toolkit
         }
 
         public TimeSpan Timeout { get; }
-        public DateTimeOffset CreatTime { get; }
+        public DateTimeOffset CreationTime { get; }
 
-        public bool IsTimeout => DateTimeOffset.UtcNow > CreatTime + Timeout;
+        public bool IsTimeout => DateTimeOffset.UtcNow > CreationTime + Timeout;
 
         public void ThrowIfTimeout(
             [CallerMemberName] string memberName = "",
