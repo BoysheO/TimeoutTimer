@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 
-namespace com.susi.util.toolkit
+namespace com.susi.toolkit
 {
     public readonly struct TimeoutTimer
     {
