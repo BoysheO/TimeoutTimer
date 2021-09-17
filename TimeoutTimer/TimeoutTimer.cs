@@ -26,12 +26,12 @@ namespace com.susi.toolkit
             [CallerLineNumber] int sourceLineNumber = 0
         )
         {
-            ThrowIfTimeout(new TimeoutException($"time out in {Timeout.TotalSeconds}s ({memberName} at {sourceFilePath}:{sourceLineNumber})"));
+            ThrowIfTimeout($"time out in {Timeout.TotalSeconds}s ({memberName} at {sourceFilePath}:{sourceLineNumber})");
         }
 
-        public void ThrowIfTimeout(TimeoutException ex)
+        public void ThrowIfTimeout(string exMsg)
         {
-            if (IsTimeout) throw ex;
+            if (IsTimeout) throw new TimeoutException(exMsg);
         }
     }
 }

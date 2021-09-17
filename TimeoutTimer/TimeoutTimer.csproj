@@ -1,7 +1,23 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <Version>1.0.0</Version>
+    <Authors>BoysheO</Authors>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <RepositoryUrl>https://github.com/obx100/TimeoutTimer</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/obx100/TimeoutTimer</PackageProjectUrl>
+    <RepositoryType>git</RepositoryType>
+    <Description>A simple and useful to timeout logic.Help for throw TimeoutException.</Description>
+    <LangVersion>latest</LangVersion>
+    <TargetFrameworks>net5.0;netstandard2.0</TargetFrameworks>
+    <Title>TimeoutTimer</Title>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageTags>timer</PackageTags>
+    <PackageReleaseNotes>version 0</PackageReleaseNotes>
+    <NeutralLanguage>en</NeutralLanguage>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
-
+  <ItemGroup>
+    <None Remove="TimeoutTimer.csproj.DotSettings" />
+  </ItemGroup>
 </Project>
