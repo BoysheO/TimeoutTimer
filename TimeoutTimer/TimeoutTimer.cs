@@ -15,8 +15,22 @@ namespace com.susi.toolkit
         {
         }
 
+        /// <summary>
+        /// 超时时长
+        /// </summary>
         public TimeSpan Timeout { get; }
+        /// <summary>
+        /// TimeoutTimer创建时刻
+        /// </summary>
         public DateTimeOffset CreationTime { get; }
+        /// <summary>
+        /// 剩余时长
+        /// </summary>
+        public TimeSpan RemainingTime => Timeout - (DateTimeOffset.UtcNow - CreationTime);
+        /// <summary>
+        /// 剩余时长
+        /// </summary>
+        public float RemainingSec => (float)RemainingTime.TotalSeconds;
 
         public bool IsTimeout => DateTimeOffset.UtcNow > CreationTime + Timeout;
 
