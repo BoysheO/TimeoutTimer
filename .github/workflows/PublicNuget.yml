@@ -1,4 +1,4 @@
-name: NugetPackageBuild
+name: nuget
 
 on:
   push:
