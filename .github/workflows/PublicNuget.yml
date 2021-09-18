@@ -1,33 +1,34 @@
-name: PublicNuget
+name: CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ nuget ]
   pull_request:
-    branches: [ master ]
+    branches: [ nuget ]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+    # 1.Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
-    - name: 建立.netcore环境
+    # 2.runtime environment
+    - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.301
-    - name: 安装依赖
-      run: dotnet restore
-    - name: 构建
-      run: dotnet build --configuration Release --no-restore
-    - name: 添加github仓库
+        dotnet-version: 3.1.100
+    # 3.build
+    - name: Build with dotnet
+      run: dotnet build --configuration Release
+    # 4.Install Nuget
+    - name: Install Nuget
       run: |
-        nuget sources add -name github -Source https://nuget.pkg.github.com/ORGANIZATION_NAME/index.json -Username ORGANIZATION_NAME -Password ${{ TokenFromGithubForAutoBuildNuget.GitHubToken }}
-    - name: 安装nuget 
-      uses: nuget/setup-nuget@v1
-      with:        
-        nuget-version: '5.x'
-    - name: 发布生成包到github和nuget
+        $sourceNugetExe = "https://dist.nuget.org/win-x86-commandline/latest/nuget.exe"
+        $targetNugetExe = "nuget.exe"
+        Invoke-WebRequest $sourceNugetExe -OutFile $targetNugetExe
+    # 5. Push  package
+    - name: Push generated package to GitHub registry
       run: |
-        nuget push ./bin/Release/*.nupkg -Source https://api.nuget.org/v3/index.json -SkipDuplicate -ApiKey ${{ TokenFromNugetForAutoNuget.NugetKey }} -NoSymbol
-        nuget push ./bin/Release/*.nupkg -Source github -SkipDuplicate
+        .\nuget push .\TimeoutTimer\bin\Release\*.nupkg -Source https://api.nuget.org/v3/index.json -SkipDuplicate -ApiKey ${{ secrets.NugetKey }} -NoSymbols
