@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Version>1.0.0</Version>
     <Authors>BoysheO</Authors>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <RepositoryUrl>https://github.com/obx100/TimeoutTimer</RepositoryUrl>
     <PackageProjectUrl>https://github.com/obx100/TimeoutTimer</PackageProjectUrl>
     <RepositoryType>git</RepositoryType>
