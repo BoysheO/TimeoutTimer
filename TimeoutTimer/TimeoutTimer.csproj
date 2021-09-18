@@ -1,11 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
     <Authors>BoysheO</Authors>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <RepositoryUrl>https://github.com/obx100/TimeoutTimer</RepositoryUrl>
-    <PackageProjectUrl>https://github.com/obx100/TimeoutTimer</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/BoysheO/TimeoutTimer/</RepositoryUrl>
+    <PackageProjectUrl></PackageProjectUrl>
     <RepositoryType>git</RepositoryType>
     <Description>A simple and useful to timeout logic.Help for throw TimeoutException.</Description>
     <LangVersion>latest</LangVersion>
@@ -13,7 +13,7 @@
     <Title>TimeoutTimer</Title>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageTags>timer</PackageTags>
-    <PackageReleaseNotes>version 0</PackageReleaseNotes>
+    <PackageReleaseNotes></PackageReleaseNotes>
     <NeutralLanguage>en</NeutralLanguage>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
