@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Version>1.0.2</Version>
+    <Version>2.0.1</Version>
     <Authors>BoysheO</Authors>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <RepositoryUrl>https://github.com/BoysheO/TimeoutTimer/</RepositoryUrl>
@@ -9,13 +9,14 @@
     <RepositoryType>git</RepositoryType>
     <Description>A simple and useful to timeout logic.Help for throw TimeoutException.</Description>
     <LangVersion>latest</LangVersion>
-    <TargetFrameworks>net5.0;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net5.0;net7.0;netstandard2.0</TargetFrameworks>
     <Title>TimeoutTimer</Title>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageTags>timer</PackageTags>
     <PackageReleaseNotes></PackageReleaseNotes>
     <NeutralLanguage>en</NeutralLanguage>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RootNamespace>BoysheO.TimeoutTimerSystem</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net5.0|AnyCPU'">

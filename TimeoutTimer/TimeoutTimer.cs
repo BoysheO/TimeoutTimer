@@ -1,14 +1,21 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 
-namespace com.susi.toolkit
+namespace BoysheO.TimeoutTimerSystem
 {
     public readonly struct TimeoutTimer
     {
-        public TimeoutTimer(TimeSpan timeout)
+        public readonly ITimeProvider TimeProvider;
+
+        public TimeoutTimer(TimeSpan timeout, ITimeProvider timeProvider)
         {
-            CreationTime = DateTimeOffset.UtcNow;
             Timeout = timeout;
+            TimeProvider = timeProvider;
+            CreationTime = TimeProvider.GetNow();
+        }
+
+        public TimeoutTimer(TimeSpan timeout) : this(timeout, DefaultTimeProvider.Instance)
+        {
         }
 
         public TimeoutTimer(float timeoutSec) : this(TimeSpan.FromSeconds(timeoutSec))
@@ -18,21 +25,24 @@ namespace com.susi.toolkit
         /// <summary>
         /// 超时时长
         /// </summary>
-        public TimeSpan Timeout { get; }
+        public readonly TimeSpan Timeout;
+
         /// <summary>
         /// TimeoutTimer创建时刻
         /// </summary>
-        public DateTimeOffset CreationTime { get; }
-        /// <summary>
-        /// 剩余时长
-        /// </summary>
-        public TimeSpan RemainingTime => Timeout - (DateTimeOffset.UtcNow - CreationTime);
-        /// <summary>
-        /// 剩余时长
-        /// </summary>
-        public float RemainingSec => (float)RemainingTime.TotalSeconds;
+        public readonly DateTimeOffset CreationTime;
 
-        public bool IsTimeout => DateTimeOffset.UtcNow > CreationTime + Timeout;
+        /// <summary>
+        /// 剩余时长
+        /// </summary>
+        public TimeSpan RemainingTime => Timeout - (TimeProvider.GetNow() - CreationTime);
+
+        /// <summary>
+        /// 剩余时长
+        /// </summary>
+        public double RemainingSec => RemainingTime.TotalSeconds;
+
+        public bool IsTimeout => TimeProvider.GetNow() > CreationTime + Timeout;
 
         public void ThrowIfTimeout(
             [CallerMemberName] string memberName = "",
@@ -40,7 +50,8 @@ namespace com.susi.toolkit
             [CallerLineNumber] int sourceLineNumber = 0
         )
         {
-            ThrowIfTimeout($"time out in {Timeout.TotalSeconds}s ({memberName} at {sourceFilePath}:{sourceLineNumber})");
+            ThrowIfTimeout(
+                $"time out in {Timeout.TotalSeconds}s ({memberName} at {sourceFilePath}:{sourceLineNumber})");
         }
 
         public void ThrowIfTimeout(string exMsg)
