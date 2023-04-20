@@ -9,7 +9,7 @@
     <RepositoryType>git</RepositoryType>
     <Description>A simple and useful to timeout logic.Help for throw TimeoutException.</Description>
     <LangVersion>latest</LangVersion>
-    <TargetFrameworks>net5.0;net7.0;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net5.0;netstandard2.0</TargetFrameworks>
     <Title>TimeoutTimer</Title>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageTags>timer</PackageTags>
