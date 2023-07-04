@@ -21,5 +21,5 @@ async Task Foo(float timeoutSec=30f){
 async Task DoSth(flat timeoutSec){}
 
 ````
-！不应将TimeoutTimer传递到其他Task去,只传递它的RemingSec，否则不利于调试.
+！不应将TimeoutTimer传递到其他Task去,只传递它的RemingSec，否则不利于调试.  
 ！出于历史原因，时间源采用的是DateTimeOffset.Now，这样的话在死循环中会永不超时。因此不可作为调试工具使用，并且此库本意仅仅是为简化超时业务处理，而不是作逻辑调试。要进行调试，请使用Stopwatch 。
